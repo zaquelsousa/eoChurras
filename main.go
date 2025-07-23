@@ -1,9 +1,12 @@
 package main
 
 import (
+	"churras/controller"
 	"churras/database"
+	"churras/models"
 	"log"
 )
+
 
 func main() {
 	//db confs tenho que passar essas credenciaais para um lugar mais seruhro tipo um .env
@@ -14,9 +17,9 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	slqDB, err := db.DB()
-	err = slqDB.Ping()
-	if err != nil {
-		log.Fatalln("deu ruim no ping com a DB", err)
-	}
+	
+	database.SetDB(db)
+	db.AutoMigrate(&models.Users{})
+
+	controller.Router()
 }
