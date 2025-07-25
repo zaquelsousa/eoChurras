@@ -19,7 +19,7 @@ func main() {
 	}
 	
 	database.SetDB(db)
-	db.AutoMigrate(&models.Users{}, &models.Produtos{})
+	db.AutoMigrate(&models.Users{}, &models.Produto{}, models.Pedido{}, models.Comanda{}, models.PedidoProduto{}, models.ComandaPedido{})
 
 	controller.Router()
 }

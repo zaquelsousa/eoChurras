@@ -23,6 +23,21 @@ func Router() {
 	router.HandleFunc("/produtos", createProduto).Methods("POST")
 	router.HandleFunc("/produtos/{id}", updateProduto).Methods("PUT")
 	router.HandleFunc("/produtos/{id}", deleteProduto).Methods("DELETE")
+	
+	//rotas pro pedidos
+	router.HandleFunc("/pedidos", getPedidos).Methods("GET")
+	router.HandleFunc("/pedidos/{id}", getPedido).Methods("GET")
+	router.HandleFunc("/pedidos", createPedido).Methods("POST")
+	router.HandleFunc("/pedidos/{id}", updatePedido).Methods("PUT")
+	router.HandleFunc("/pedidos/{id}", deletePedido).Methods("DELETE")
+	
+	//rotas pro comandas
+	router.HandleFunc("/comandas", getComandas).Methods("GET")
+	router.HandleFunc("/comandas/{id}", getComanda).Methods("GET")
+	router.HandleFunc("/comandas", createComanda).Methods("POST")
+	router.HandleFunc("/comandas/{id}", updateComanda).Methods("PUT")
+	router.HandleFunc("/comandas/{id}", deleteComanda).Methods("DELETE")
+
 
 	log.Fatalln(http.ListenAndServe(":8081",
 		handlers.CORS(
