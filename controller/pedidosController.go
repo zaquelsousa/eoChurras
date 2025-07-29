@@ -12,7 +12,7 @@ func getPedidos(w http.ResponseWriter, r *http.Request){
 	var pedidos []models.Pedido
 
 	db := database.GetDB()
-	result := db.Find(&pedidos)
+	result := db.Preload("Produtos").Find(&pedidos)
 
 	if result.Error != nil{
 		http.Error(w, result.Error.Error(), http.StatusInternalServerError)
@@ -71,8 +71,14 @@ func createPedido(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	}
+	if err := db.Preload("Produtos").First(&pedido, pedido.ID).Error; err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
 	addOrderOnBill(uint(pedidoReq.ComandaID), pedido.ID)
 	w.WriteHeader(http.StatusCreated)
+	BroadcastNovoPedido(pedido)
 	json.NewEncoder(w).Encode(pedido)
 }
 

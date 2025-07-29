@@ -7,7 +7,7 @@ import (
 
 type Comanda struct {
 	gorm.Model
-	Identificaçao string
+	Identificacao string
 	//Pedidos []Pedido `gorm:"many2many:pedidos;"`
 	EstaFechada bool
 	UserID int

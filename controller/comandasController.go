@@ -10,7 +10,20 @@ import (
 	"github.com/shopspring/decimal"
 )
 
-func getComandas(w http.ResponseWriter, r *http.Request){}
+func getComandas(w http.ResponseWriter, r *http.Request){
+	var comandas []models.Comanda
+
+	db := database.GetDB()
+	result := db.Find(&comandas)
+
+	if result.Error != nil {
+		http.Error(w, result.Error.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	json.NewEncoder(w).Encode(comandas)
+}
+
 func getComanda(w http.ResponseWriter, r *http.Request){}
 
 //struct auxiliar pra essa porra DE REQUEST SIMPLISMENTE OUIDEIO SQL SERIO SE FGUDER
@@ -40,7 +53,7 @@ func createComanda(w http.ResponseWriter, r *http.Request){
 db := database.GetDB()
 
 	comanda := models.Comanda{
-		Identificaçao: comandaReq.Identificaçao,
+		Identificacao: comandaReq.Identificaçao,
 		EstaFechada: comandaReq.EstaFechada,
 		UserID: comandaReq.UserID,
 		Valor: comandaReq.Valor,

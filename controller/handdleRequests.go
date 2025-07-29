@@ -38,6 +38,9 @@ func Router() {
 	router.HandleFunc("/comandas/{id}", updateComanda).Methods("PUT")
 	router.HandleFunc("/comandas/{id}", deleteComanda).Methods("DELETE")
 
+	
+	//websocket routes
+	router.HandleFunc("/ws", UpdatePedidos)
 
 	log.Fatalln(http.ListenAndServe(":8081",
 		handlers.CORS(

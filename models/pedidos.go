@@ -5,7 +5,7 @@ import "gorm.io/gorm"
 
 type Pedido struct {
 	gorm.Model
-	//Produtos []Produto
+	Produtos    []PedidoProduto `gorm:"foreignKey:PedidoID"`
 	ComandaID int
 	Comanda Comanda `gorm:"foreignKey:ComandaID"`
 	StatusPedido StatusPedido `json: StatusPedido`
