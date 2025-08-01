@@ -1,0 +1,255 @@
+:root {
+    --text: hsl(206, 17%, 92%);
+    --background: hsl(200, 22%, 13%);
+    --primary: hsl(206, 16%, 72%);
+    --secondary: hsl(235, 16%, 32%);
+    --accent: hsl(240, 16%, 51%);
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#comandas > div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+#comandas > div > div {
+    background: var(--primary);
+    color: var(--background);
+    border-radius: 15px;
+    padding: 10px;
+    width: calc((100% - 20px) / 3);
+    box-sizing: border-box;
+}
+
+#comandas > div > div h3 {
+    text-align: center;
+}
+
+#comandas > div > div button {
+    text-align: center;
+}
+
+.AddPedido{
+    background-color: var(--secondary);
+    color: white;
+    height: 30px;
+    padding: 8px 16px;  
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    align-self: center;
+
+}
+
+button.conteinerBTN {
+    background-color: var(--secondary);
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+button.conteinerBTN:hover {
+    background-color: #45a049;
+}
+
+.btn-container {
+    text-align: center;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.title button {
+    background-color: var(--secondary);
+    color: white;
+    height: 30px;
+    padding: 8px 16px;  
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    align-self: center;
+}
+
+/* Modal criar comandas */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);}
+
+
+.modal-content {
+    background-color: var(--secondary);
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    position: relative;
+    color: whitesmoke;
+}
+
+/* Close button */
+.close-button {
+    color: red;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #000;
+}
+
+.btnCreate {
+    display: block;
+    margin: 20px auto 0 auto;
+    background-color: var(--primary);
+    padding: 8px 16px;
+    border-radius: 5px;
+    border: none;
+}
+.btnCreate:hover {
+    background-color: #45a049;  
+    color: #000;
+}
+
+/* Modal pedido*/
+.modalPedido {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5); 
+}
+
+/* Modal content */
+.ContentModalPedido {
+    background-color: var(--secondary);
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 340px;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+}
+
+/* Close button */
+.closeButtonMpedido {
+    color: red;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.closeButtonMpedido:hover {
+    color: #000;
+}
+
+/* Produto + Quantidade side-by-side */
+.produtoQuantidade {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.produtoWrapper,
+.qtdWrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.qtdWrapper {
+    max-width: 80px;
+}
+
+/* Add Produto button */
+#addProduto {
+    margin-top: 10px;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#addProduto:hover {
+    background-color: #1976D2;
+}
+
+/* Submit button */
+.btnCreatePedido {
+    display: block;
+    margin: 20px auto 0 auto;
+    background-color: #4CAF50;
+    padding: 8px 16px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.btnCreatePedido:hover {
+    background-color: #45a049;
+    color: #000;
+}
+
+/* Remove list bullets */
+#createPedido ul li {
+    list-style: none;
+    padding: 6px 0;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+}
+
+/* General input and select styling */
+input,
+select {
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+

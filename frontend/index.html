@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="icon" href="assets/favicon.png" type="image/png">
+        <title>Comandas</title>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./styles/comandas.css"> 
+    </head>
+    <body>
+        <div class="title">
+            <h1>Comandas</h1>
+            <button>Nova Comanda</button>
+        </div>
+        <div id = "comandas"></div>
+
+        <div id="createComanda" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <form id="comandaForm">
+                    <label for="Identificacao">Identificação</label>
+                    <input type="text" id="Identificacao" name="Identificacao">
+                    <input class="btnCreate" type="submit" value="Criar">
+                </form>
+            </div>
+        </div> 
+
+        <div id="ModalMaisInfo" style="display: none;">
+            <span class="close-button">&times;</span>
+            <h1>cuul</h1>
+        </div> 
+        
+        <div id="createPedido" class="modalPedido">
+            <div class="ContentModalPedido">
+                <span class="closeButtonMpedido">&times;</span>
+                <form id="PedidoForm">
+                    <label for="comandaName">Comanda</label>
+                    <input disabled name="comandas" id="comandaName" />
+
+                    <div class="produtoQuantidade">
+                        <div class="produtoWrapper">
+                            <label for="produtos">Produtos</label>
+                            <select name="produtos" id="produtos"></select>
+                        </div>
+
+                        <div class="qtdWrapper">
+                            <label for="qtd">Qtd</label>
+                            <input type="number" id="qtd" />
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Itens</h3>
+                        <ul id="itensAtuais"></ul>
+                    </div>
+
+                    <button id="addProduto">add produto</button>
+                    <input class="btnCreatePedido" type="submit" value="Realizar Pedido" />
+                </form>
+
+                            </div>
+        </div>
+
+        <script src="scripts/MaisInfos.js" charset="UTF-8" defer></script>
+        <script src="scripts/script.js" charset="UTF-8" defer></script>
+    </body>
+</html>

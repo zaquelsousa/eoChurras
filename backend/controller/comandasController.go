@@ -31,7 +31,7 @@ func getComanda(w http.ResponseWriter, r *http.Request){}
 //FUDER LIXO DO CARAI NA EU DEVERIA TROCAR PARA MONGODB
 
 type ComandaRequest struct {
-	Identificaçao string
+	Identificacao string
 	Pedidos []ComandaPedidoRequest `gorm:"many2many:pedidos;"`
 	EstaFechada bool
 	UserID int
@@ -53,7 +53,7 @@ func createComanda(w http.ResponseWriter, r *http.Request){
 db := database.GetDB()
 
 	comanda := models.Comanda{
-		Identificacao: comandaReq.Identificaçao,
+		Identificacao: comandaReq.Identificacao,
 		EstaFechada: comandaReq.EstaFechada,
 		UserID: comandaReq.UserID,
 		Valor: comandaReq.Valor,
@@ -73,7 +73,8 @@ db := database.GetDB()
 			return
 		}
 	}
-
+	
+	BroadcastMensagem("comanda", comanda)
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(comanda)
 

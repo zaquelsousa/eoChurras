@@ -1,0 +1,73 @@
+:root {
+    --text: hsl(206, 17%, 92%);
+    --background: hsl(200, 22%, 13%);
+    --primary: hsl(206, 16%, 72%);
+    --secondary: hsl(235, 16%, 32%);
+    --accent: hsl(240, 16%, 51%);
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1 {
+    text-align: center;
+    color: var(--text);
+}
+
+
+#Pedidos > div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#Pedidos > div > div {
+    background: var(--primary);
+    flex: 0 0 calc(33.333% - 10px);
+    margin: 5px;
+    padding: 5px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--background); 
+}
+
+#Pedidos > div > div > h3 {
+    text-align: center;
+    color: var(--secondary);
+}
+
+#Pedidos > div > div > ul {
+    list-style: none;
+    padding: 0;
+}
+
+.conteiner-bts {
+    text-align: center;
+}
+
+.conteiner-bts button {
+    align-self: flex-end;
+    background-color: var(--accent);
+    color: var(--text);
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.conteiner-bts button:hover {
+    background-color: hsl(240, 16%, 61%); /* Acento levemente mais claro */
+}
+

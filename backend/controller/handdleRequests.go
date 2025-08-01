@@ -30,7 +30,8 @@ func Router() {
 	router.HandleFunc("/pedidos", createPedido).Methods("POST")
 	router.HandleFunc("/pedidos/{id}", updatePedido).Methods("PUT")
 	router.HandleFunc("/pedidos/{id}", deletePedido).Methods("DELETE")
-	
+	router.HandleFunc("/pedidos/{id}/pronto", pedidoPronto).Methods("GET")
+
 	//rotas pro comandas
 	router.HandleFunc("/comandas", getComandas).Methods("GET")
 	router.HandleFunc("/comandas/{id}", getComanda).Methods("GET")
@@ -40,7 +41,10 @@ func Router() {
 
 	
 	//websocket routes
-	router.HandleFunc("/ws", UpdatePedidos)
+	router.HandleFunc("/ws", WebSocketHandler)
+	//router.HandleFunc("/wsNotificacao", WsNotificacao)
+	//router.HandleFunc("/wsComandas", UpdateComandas)
+
 
 	log.Fatalln(http.ListenAndServe(":8081",
 		handlers.CORS(

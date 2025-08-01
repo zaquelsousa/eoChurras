@@ -4,8 +4,10 @@ import (
 	"churras/database"
 	"churras/models"
 	"encoding/json"
-	"github.com/shopspring/decimal"
 	"net/http"
+
+	"github.com/gorilla/mux"
+	"github.com/shopspring/decimal"
 )
 
 func getPedidos(w http.ResponseWriter, r *http.Request){
@@ -78,10 +80,48 @@ func createPedido(w http.ResponseWriter, r *http.Request) {
 
 	addOrderOnBill(uint(pedidoReq.ComandaID), pedido.ID)
 	w.WriteHeader(http.StatusCreated)
-	BroadcastNovoPedido(pedido)
+	BroadcastMensagem("pedido", pedido)
 	json.NewEncoder(w).Encode(pedido)
 }
 
+
+type Notificacao struct {
+	Tipo     string `json:"tipo"`
+    Mensagem string `json:"mensagem"`
+}
+
+
+func pedidoPronto(w http.ResponseWriter, r *http.Request){
+	params := mux.Vars(r)
+	id := params["id"]
+
+	var pedido  models.Pedido
+	db := database.GetDB()
+	db.Find(&pedido, id)
+
+	if pedido.StatusPedido == 0 {
+		var pedido_produto models.PedidoProduto
+		db.Where("pedido_id = ?", id).First(&pedido_produto)
+		
+		var comanda models.Comanda
+		db.Find(&comanda, pedido.ComandaID)
+		valor := pedido_produto.Preco
+		comanda.Valor = comanda.Valor.Add(valor)
+		db.Save(&comanda)
+
+		pedido.StatusPedido = 1
+		db.Save(&pedido)
+
+		notificacao := Notificacao{
+			Tipo:     "pedido_pronto",
+			Mensagem: "O pedido da comanda "+ comanda.Identificacao + " está pronto para ser entregue.",
+		}
+		BroadcastMensagem("notificacao", notificacao)
+	}
+
+
+
+}
 
 func updatePedido(w http.ResponseWriter, r *http.Request){}
 func deletePedido(w http.ResponseWriter, r *http.Request){}

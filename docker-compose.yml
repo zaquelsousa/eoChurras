@@ -1,0 +1,33 @@
+services:
+  #esse db eo que o docker usa pra "Linkar" as paradasd entao tem que passar ela na string de concexzao dessa porra
+  db:
+    image: mariadb:11
+    restart: always
+    environment:
+      MARIADB_USER: zaquel
+      MARIADB_PASSWORD: 1234
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: churrasquinho
+    ports:
+      - "3306:3306"
+    # porra go precosse do carai se para que vale a pena fazer o go esperar o mariadb iniciar
+
+
+  backend:
+    build: ./backend
+    #redireciona a porta do conteiner para do meu pc
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+    
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/mime.types:/etc/nginx/mime.types:ro
+    depends_on:
+      - backend
