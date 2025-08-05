@@ -4,10 +4,10 @@ services:
     image: mariadb:11
     restart: always
     environment:
-      MARIADB_USER: zaquel
-      MARIADB_PASSWORD: 1234
-      MARIADB_ROOT_PASSWORD: root
-      MARIADB_DATABASE: churrasquinho
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
     ports:
       - "3306:3306"
     # porra go precosse do carai se para que vale a pena fazer o go esperar o mariadb iniciar
