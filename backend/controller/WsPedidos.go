@@ -14,7 +14,7 @@ var upgrader = websocket.Upgrader {
 var clients = make(map[*websocket.Conn]bool)
 
 type Mensagem struct {
-	Tipo string      `json:"tipo"` // "pedido", "notificacao", "comanda"
+	Tipo string      `json:"tipo"` 	
 	Dado interface{} `json:"dado"`
 }
 
@@ -26,7 +26,6 @@ func WebSocketHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	clients[ws] = true
 
-	// (Opcional) ler mensagens do cliente se precisar
 	go func() {
 		defer func() {
 			ws.Close()

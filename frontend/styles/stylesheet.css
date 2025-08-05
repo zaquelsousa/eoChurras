@@ -71,3 +71,16 @@ h1 {
     background-color: hsl(240, 16%, 61%); /* Acento levemente mais claro */
 }
 
+@media (max-width: 768px) {
+    #Pedidos > div {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+}
+
+
+

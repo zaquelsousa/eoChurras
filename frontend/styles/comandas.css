@@ -253,3 +253,102 @@ select {
     font-size: 14px;
 }
 
+
+#listaDePedidosOntab {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5); 
+}
+
+#listaDePedidosOntab button{
+    margin: 20px auto 0 auto;
+    background-color: #4CAF50;
+    padding: 8px 16px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+ 
+}
+
+#listaDePedidosOntab button:hover{
+    background-color: #45a049;
+    color: #000;
+
+}
+
+/* Modal content */
+.contentModalListaProdutos {
+    background-color: var(--secondary);
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 600px;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+}
+
+/* Close button */
+#closeButtonMListaProdutos {
+    color: red;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#closeButtonMListaProdutos:hover {
+    color: #000;
+}
+
+#ulProdutos {
+    list-style: none;
+}
+
+#ulProdutos li{
+    padding-bottom: 10px;
+}
+
+
+ /* Responsividade pras porra dos celuilar*/
+@media (max-width: 768px) {
+    #comandas > div > div {
+        width: 100%;
+    }
+
+    .modal-content,
+    .ContentModalPedido,
+    .contentModalListaProdutos {
+        width: 90%;
+    }
+
+    .produtoQuantidade {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .qtdWrapper {
+        max-width: none;
+    }
+
+    .title {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .AddPedido,
+    .title button,
+    button.conteinerBTN {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+

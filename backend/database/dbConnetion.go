@@ -11,6 +11,7 @@ import (
 var db *gorm.DB
 
 func DbConnection(user, pssWord, dbName string) (*gorm.DB, error) {
+	//(db:3306) tem que colocar essa porra ai quando for rodar no conteiner
 	var connectionString = fmt.Sprintf(
 		"%s:%s@tcp(db:3306)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		user, pssWord, dbName,

@@ -8,6 +8,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./styles/comandas.css"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <div class="title">
@@ -31,7 +32,7 @@
             <span class="close-button">&times;</span>
             <h1>cuul</h1>
         </div> 
-        
+
         <div id="createPedido" class="modalPedido">
             <div class="ContentModalPedido">
                 <span class="closeButtonMpedido">&times;</span>
@@ -59,9 +60,27 @@
                     <input class="btnCreatePedido" type="submit" value="Realizar Pedido" />
                 </form>
 
-                            </div>
+            </div>
         </div>
 
+        <div id="listaDePedidosOntab">
+            <div class="contentModalListaProdutos">
+                <span id="closeButtonMListaProdutos">&times;</span>
+                <ul id="ulProdutos"></ul>
+                <p id="precoTT"></p>
+                
+                <div>
+                    <label>forma de pagamento</label>
+                    <select>
+                        <option>Dinheiro</option>
+                        <option>Pix</option>
+                        <option>Debito</option>
+                        <option>Credito</option>
+                    </select>
+                    <button>Confirmar Pagamento</button>
+                </div>
+            </div>
+        </div>
         <script src="scripts/MaisInfos.js" charset="UTF-8" defer></script>
         <script src="scripts/script.js" charset="UTF-8" defer></script>
     </body>

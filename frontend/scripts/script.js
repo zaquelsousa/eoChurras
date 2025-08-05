@@ -32,6 +32,7 @@ fetch(url, {
             let btnFechar = document.createElement("button")
             btnFechar.classList.add("conteinerBTN")
             btnFechar.textContent = "Fechar Conta" 
+            btnFechar.setAttribute("data-id", e.ID)
             let btnInfo = document.createElement("button");
             btnInfo.classList.add("conteinerBTN", "moreInfo");
             btnInfo.setAttribute("data-id", e.ID);
@@ -156,6 +157,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let title = document.createElement("h3");
         title.textContent = "Identificaçao: " + novaCamanda.Identificacao;
+        btnNewPedido = document.createElement("button");
+        btnNewPedido.textContent = "Novo Pedido";
+        btnNewPedido.setAttribute('data-id', novaCamanda.ID)
+        btnNewPedido.setAttribute('comanda-name', novaCamanda.Identificacao);
+        btnNewPedido.classList.add("AddPedido");
         let preco = document.createElement("p");
         preco.textContent = "Valor: " + novaCamanda.Preco;
         let status = document.createElement("p");
@@ -170,6 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let btnFechar = document.createElement("button");
         btnFechar.classList.add("conteinerBTN");
         btnFechar.textContent = "Fechar Conta";
+        btnFechar.setAttribute("data-id",novaCamanda.ID)
 
         let btnInfo = document.createElement("button");
         btnInfo.classList.add("conteinerBTN", "moreInfo");
@@ -181,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
         btnContainer.appendChild(btnFechar);
         btnContainer.appendChild(btnInfo);
 
-        comandasDiv.append(title, preco, status, date, btnContainer);
+        comandasDiv.append(title, btnNewPedido, preco, status, date, btnContainer);
 
         conteinercomandasDiv.appendChild(comandasDiv);
     }
@@ -291,4 +298,56 @@ document.getElementById("PedidoForm").addEventListener("submit", function(e){
 
 })
 
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    let comandaID;
+    //delegaçao de sei la ooq
+    //
+
+        const lista = document.getElementById("listaDePedidosOntab");
+    const ul = document.getElementById("ulProdutos");
+    const precoTotal = document.getElementById("precoTT");
+    document.body.addEventListener("click", (event) => {
+        const target = event.target;
+        // AINDA TEM QUE VER SE O CLICK VEIO NA CLASSE FILHA QUE A QUE NOS QUER 
+        if (target.classList.contains("conteinerBTN")) {
+            comandaID = parseInt(target.getAttribute("data-id"));
+            console.log(comandaID);
+
+            const closeURL = `/api/comandas/${comandaID}/closetab`;
+            fetch(closeURL, {
+                method: "GET"
+            }).then((r) => r.json()).then((json) => {
+                json.produtos.forEach(e =>{
+                    let item = document.createElement("li");
+                    item.textContent = `Quantidade: ${e.qtd} - ${e.name} - Valor Unitario:R$ ${e.valor_unitario} - Valor Total:R$ ${e.valor_total}`;
+                    ul.appendChild(item);
+                })
+                precoTotal.textContent = `Valor Total: R$ ${json.valor_total_pedido}`
+
+            })
+
+            lista.style.display = "block";
+
+        }
+    });
+
+    const closebtn = document.getElementById("closeButtonMListaProdutos");
+    console.log(closebtn)
+    closebtn.addEventListener("click", () => {
+        ul.innerHTML = "";
+        precoTotal.textContent = "";
+        lista.style.display = "none";
+    });
+
+
+    window.addEventListener("click", (event) => {
+        if (event.target === lista) {
+            ul.innerHTML = "";
+            precoTotal.textContent = "";
+            lista.style.display = "none";
+        }
+    });
+});
 

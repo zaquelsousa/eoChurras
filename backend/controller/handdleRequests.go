@@ -38,6 +38,7 @@ func Router() {
 	router.HandleFunc("/comandas", createComanda).Methods("POST")
 	router.HandleFunc("/comandas/{id}", updateComanda).Methods("PUT")
 	router.HandleFunc("/comandas/{id}", deleteComanda).Methods("DELETE")
+	router.HandleFunc(("/comandas/{id}/closetab"), closeTab).Methods("GET")
 
 	
 	//websocket routes
