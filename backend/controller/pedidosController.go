@@ -3,7 +3,9 @@ package controller
 import (
 	"churras/database"
 	"churras/models"
+	"churras/services"
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -78,7 +80,11 @@ func createPedido(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	addOrderOnBill(uint(pedidoReq.ComandaID), pedido.ID)
+	err := services.AddOrderOnbill(uint(pedidoReq.ComandaID), pedido.ID)
+
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Erro: %s", err.Error()), http.StatusBadRequest)
+	}
 	w.WriteHeader(http.StatusCreated)
 	BroadcastMensagem("pedido", pedido)
 	json.NewEncoder(w).Encode(pedido)
